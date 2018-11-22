@@ -42,15 +42,11 @@ public class Main {
             int counter = 0;
             for (double[] list : messageList) {
                 for (double item : list) {
-                    if (!valueMap.containsKey(item)) {
-                        valueMap.put(item, 0.5);
-                    } else {
                         if (valueList.get(counter) == 0.0) {
-                            valueMap.put(item, Math.max(valueMap.get(item) - 0.01, 0.0));
+                            valueMap.put(item, Math.max(valueMap.containsKey(item) ? valueMap.get(item) - 0.01 : 0.49, 0.0));
                         } else {
-                            valueMap.put(item, Math.min(valueMap.get(item) + 0.01, 1.0));
+                            valueMap.put(item, Math.min(valueMap.containsKey(item) ? valueMap.get(item) + 0.01 : 0.51, 1.0));
                         }
-                    }
                 }
                 counter++;
             }
